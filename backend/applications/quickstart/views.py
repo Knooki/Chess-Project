@@ -18,7 +18,7 @@ class PlayerViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows players to be viewed or edited.
     """
-    queryset = Player.objects.all().order_by('-date_joined')
+    queryset = Player.objects.all()
     serializer_class = PlayerSerializer
     permission_classes = [permissions.IsAuthenticated]
 
