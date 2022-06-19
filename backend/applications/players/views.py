@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User, Group
-from applications.quickstart.models import Player
+from applications.players.models import Player
 from rest_framework import viewsets
 from rest_framework import permissions
-from applications.quickstart.serializers import UserSerializer, GroupSerializer, PlayerSerializer
+from applications.players.serializers import UserSerializer, GroupSerializer, PlayerSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):

@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 
-from applications.quickstart.models import Player
+from applications.players.models import Player
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
