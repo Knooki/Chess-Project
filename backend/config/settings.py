@@ -11,22 +11,21 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
-import environ
-from pathlib import Path
 
+env = os.environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+#BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(
+    os.path.dirname(os.path.abspath(__file__))
+)
 
-env = environ.Env()
+SECRET_KEY=os.environ.get("SECRET_KEY")
 
-
-
+# Take environment variables from .env file
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*ndl&rlsx)^reg6d*smur@6d7u$48#w_mf=13(&-jev3+5++f0'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -96,9 +95,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # }
 
 DATABASES = {
-    'default': env.db(),
+        "default": {
+        "ENGINE": os.environ.get("SQL_ENGINE"),
+        "NAME": os.environ.get("SQL_DATABASE"),
+        "USER": os.environ.get("SQL_USER"),
+        "PASSWORD": os.environ.get("SQL_PASSWORD"),
+        "HOST": os.environ.get("SQL_HOST"),
+        "PORT": os.environ.get("SQL_PORT"),
+    }
 }
-
 
 
 # Password validation
@@ -135,10 +140,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-#------------
+# ------------
 
-STATIC_URL = 'backend/static'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_URL = 'backend/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

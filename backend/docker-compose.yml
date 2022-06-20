@@ -6,7 +6,7 @@ services:
     command: sh -c "python3 manage.py runserver"
     volumes:
       - ./chess_project:/backend
-      - static_data:/backend/static_data
+      - static_data:/static_data
     expose:
       - 8000
     environment:
@@ -20,7 +20,3 @@ services:
       POSTGRES_USER: user_name      
       POSTGRES_PASSWORD: password
       POSTGRES_DB: chess_project
-
-volumes:
-  pg_data:
-  static_data:
